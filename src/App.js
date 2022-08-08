@@ -13,9 +13,10 @@ var info = [{"id": 1,
 // var info = []
 // ***************
 var json = {"data": info}
-if (localStorage.getItem("data") === undefined){
+if (localStorage.getItem("data") === null){
   localStorage.setItem("data",JSON.stringify(json));
 }
+// localStorage.setItem("data",JSON.stringify(json));
 
 function App() {
   var [items, setItem] = useState([])
@@ -30,6 +31,11 @@ function App() {
     localStorage.setItem("idClicked", id)
     navigate("/detail")
   }
+
+  localStorage.setItem("id", null)
+  localStorage.setItem("title", "")
+  localStorage.setItem("description", "")
+  localStorage.setItem("Image", "")
 
   return (
     <div className="App">

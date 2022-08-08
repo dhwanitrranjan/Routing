@@ -14,7 +14,6 @@ export default function Detailed() {
       return i
     }
   })
-  console.log(item)
 
   const handleDel = (id) =>{
     const newItem = items.filter((i)=> i.id !== id)
@@ -23,13 +22,20 @@ export default function Detailed() {
     navigate('/')
   }
 
-  const handleEdit = () =>{
-    
+  const handleEdit = (e) =>{
+    console.log("hi")
+    console.log(e.id)
+    localStorage.setItem("id", e.id)
+    localStorage.setItem("title", e.title)
+    localStorage.setItem("description", e.description)
+    localStorage.setItem("Image", e.Image)
+    navigate('/create')
   }
 
   return (
     <div>
       <Row>
+        <Button onClick={()=> navigate('/')}>Home</Button>
         <Col md={{span:6, offset:3}}>
           <Card>
             <Card.Img varient="top" src={item[0].Image} />
@@ -40,7 +46,7 @@ export default function Detailed() {
                 <Button onClick={()=>handleDel(item[0].id)}>Delete</Button>
               </Col>
               <Col md={{span:5, offset:1}}>
-                <Button onClick={handleEdit}>Edit</Button>
+                <Button onClick={()=>handleEdit(item[0])}>Edit</Button>
               </Col>   
             </Row> 
           </Card>
